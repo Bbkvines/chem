@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Inorganic Chemistry – Chem Notes</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #f9f7f4; --surface: #ffffff; --border: #e8e3db;
+      --text: #1e1c18; --muted: #8a8070;
+      --accent: #7a3b1e; --accent-lt: #fdf0e8; --accent-tag: #f5d5b8;
+      --radius: 8px; --sidebar-w: 220px;
+    }
+    body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; display: flex; flex-direction: column; }
+    header { background: var(--surface); border-bottom: 1px solid var(--border); padding: 0 2rem; height: 60px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 100; }
+    .logo { font-family: 'Lora', serif; font-size: 1.3rem; font-weight: 600; color: #1a4a6b; text-decoration: none; display: flex; align-items: center; gap: .5rem; }
+    .logo span { background: #1a4a6b; color: #fff; font-family: 'DM Mono', monospace; font-size: .65rem; padding: 2px 6px; border-radius: 4px; }
+    .header-links a { font-size: .85rem; color: var(--muted); text-decoration: none; margin-left: 1.5rem; transition: color .2s; }
+    .header-links a:hover, .header-links a.active { color: var(--accent); font-weight: 500; }
+    .topic-hero { background: var(--accent-lt); border-bottom: 1px solid #e8c9aa; padding: 2.5rem 2rem 2rem; }
+    .topic-hero-inner { max-width: 1060px; margin: 0 auto; }
+    .crumb { font-size: .78rem; color: var(--muted); margin-bottom: .8rem; }
+    .crumb a { color: var(--accent); text-decoration: none; }
+    .topic-hero h1 { font-family: 'Lora', serif; font-size: 1.9rem; font-weight: 600; color: var(--accent); display: flex; align-items: center; gap: .7rem; margin-bottom: .4rem; }
+    .topic-hero p { color: var(--muted); font-size: .9rem; max-width: 540px; line-height: 1.6; }
+    .page { display: flex; max-width: 1060px; margin: 0 auto; width: 100%; padding: 2rem 1.5rem; gap: 2rem; flex: 1; }
+    aside { width: var(--sidebar-w); flex-shrink: 0; }
+    .sidebar-sticky { position: sticky; top: 76px; }
+    .sidebar-label { font-size: .65rem; font-weight: 500; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); margin-bottom: .6rem; padding-left: .5rem; }
+    .sidebar-group { margin-bottom: 1.8rem; }
+    .sidebar-group a { display: flex; align-items: center; gap: .5rem; padding: .4rem .6rem; border-radius: var(--radius); font-size: .85rem; color: var(--text); text-decoration: none; transition: background .15s, color .15s; }
+    .sidebar-group a:hover, .sidebar-group a.active { background: var(--accent-lt); color: var(--accent); }
+    .sidebar-group a .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--border); flex-shrink: 0; }
+    .sidebar-group a:hover .dot, .sidebar-group a.active .dot { background: var(--accent); }
+    .count { margin-left: auto; font-size: .72rem; color: var(--muted); background: #f0ebe3; padding: 1px 7px; border-radius: 20px; }
+    main { flex: 1; min-width: 0; }
+    .section-head { display: flex; align-items: center; margin-bottom: 1rem; margin-top: 1.5rem; }
+    .section-head:first-child { margin-top: 0; }
+    .section-head h2 { font-family: 'Lora', serif; font-size: 1.05rem; font-weight: 600; }
+    .notes-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1rem; margin-bottom: 2rem; }
+    .card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.2rem 1.3rem; text-decoration: none; color: inherit; display: flex; flex-direction: column; gap: .5rem; transition: border-color .2s, box-shadow .2s, transform .15s; }
+    .card:hover { border-color: var(--accent); box-shadow: 0 4px 16px rgba(122,59,30,0.1); transform: translateY(-2px); }
+    .card-tag { font-size: .7rem; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--accent); }
+    .card-title { font-family: 'Lora', serif; font-size: .98rem; font-weight: 600; line-height: 1.4; }
+    .card-excerpt { font-size: .82rem; color: var(--muted); line-height: 1.6; }
+    .card-meta { display: flex; align-items: center; gap: .5rem; margin-top: auto; padding-top: .5rem; border-top: 1px solid var(--border); font-size: .73rem; color: var(--muted); }
+    .tag { background: var(--accent-tag); color: var(--accent); padding: 2px 8px; border-radius: 20px; font-size: .7rem; }
+    .notes-list { display: flex; flex-direction: column; gap: .5rem; margin-bottom: 2rem; }
+    .list-item { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: .85rem 1.1rem; display: flex; align-items: center; gap: .9rem; text-decoration: none; color: inherit; transition: border-color .2s, background .2s; }
+    .list-item:hover { border-color: var(--accent); background: var(--accent-lt); }
+    .list-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--accent); flex-shrink: 0; }
+    .list-title { font-size: .9rem; font-weight: 500; flex: 1; }
+    .list-sub { font-size: .75rem; color: var(--muted); }
+    .list-date { font-size: .73rem; color: var(--muted); font-family: 'DM Mono', monospace; }
+    footer { border-top: 1px solid var(--border); text-align: center; padding: 1.5rem; font-size: .78rem; color: var(--muted); }
+    @media (max-width: 700px) { aside { display: none; } .page { padding: 1rem; } }
+  </style>
+</head>
+<body>
+
+<header>
+  <a href="index.html" class="logo"><span>CH</span> Chem Notes</a>
+  <nav class="header-links">
+    <a href="organic.html">Organic</a>
+    <a href="inorganic.html" class="active">Inorganic</a>
+    <a href="physical.html">Physical</a>
+    <a href="about.html">About</a>
+  </nav>
+</header>
+
+<div class="topic-hero">
+  <div class="topic-hero-inner">
+    <div class="crumb"><a href="index.html">Home</a> › Inorganic Chemistry</div>
+    <h1>⚗️ Inorganic Chemistry</h1>
+    <p>Periodic trends, coordination compounds, bonding theories, crystal structures, and transition metals.</p>
+  </div>
+</div>
+
+<div class="page">
+  <aside>
+    <div class="sidebar-sticky">
+      <div class="sidebar-group">
+        <div class="sidebar-label">Subtopics</div>
+        <a href="#periodic" class="active"><span class="dot"></span> Periodic Trends <span class="count">1</span></a>
+        <a href="#bonding"><span class="dot"></span> Bonding <span class="count">1</span></a>
+        <a href="#coordination"><span class="dot"></span> Coordination Compounds <span class="count">2</span></a>
+      </div>
+      <div class="sidebar-group">
+        <div class="sidebar-label">Other Topics</div>
+        <a href="organic.html"><span class="dot"></span> Organic</a>
+        <a href="physical.html"><span class="dot"></span> Physical</a>
+      </div>
+    </div>
+  </aside>
+
+  <main>
+
+    <div class="section-head" id="periodic">
+      <h2>Periodic Trends</h2>
+    </div>
+    <div class="notes-list">
+      <a href="#" class="list-item">
+        <span class="list-dot"></span>
+        <span class="list-title">Ionization Energy, Electronegativity &amp; Atomic Radius</span>
+        <span class="list-sub">Trends across periods and groups, exceptions</span>
+        <span class="list-date">Apr 12</span>
+      </a>
+    </div>
+
+    <div class="section-head" id="bonding">
+      <h2>Bonding &amp; Molecular Structure</h2>
+    </div>
+    <div class="notes-list">
+      <a href="#" class="list-item">
+        <span class="list-dot"></span>
+        <span class="list-title">VSEPR Theory &amp; Molecular Geometry</span>
+        <span class="list-sub">Electron pair repulsion, bond angles, lone pair effects</span>
+        <span class="list-date">Mar 30</span>
+      </a>
+    </div>
+
+    <div class="section-head" id="coordination">
+      <h2>Coordination Compounds</h2>
+    </div>
+    <div class="notes-grid">
+      <a href="#" class="card">
+        <div class="card-tag">Coordination</div>
+        <div class="card-title">Crystal Field Theory</div>
+        <div class="card-excerpt">d-orbital splitting in octahedral, tetrahedral, and square planar fields. High vs low spin complexes.</div>
+        <div class="card-meta"><span class="tag">CFT</span><span class="tag">Transition Metals</span><span style="margin-left:auto">Apr 15</span></div>
+      </a>
+      <a href="#" class="card">
+        <div class="card-tag">Coordination</div>
+        <div class="card-title">Naming Coordination Complexes (IUPAC)</div>
+        <div class="card-excerpt">Rules for naming ligands, central metal, oxidation states, and geometric isomers.</div>
+        <div class="card-meta"><span class="tag">Nomenclature</span><span style="margin-left:auto">Apr 2</span></div>
+      </a>
+    </div>
+
+  </main>
+</div>
+
+<footer>© 2026 Chem Notes · Built with plain HTML &amp; hosted on GitHub Pages</footer>
+</body>
+</html>
